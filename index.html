@@ -235,7 +235,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center top;
+      object-position: 50% 18%;
       display: block;
       filter: grayscale(15%);
     }
@@ -431,9 +431,12 @@
     .gallery-grid {
       display: grid;
       grid-template-columns: 1.4fr 1fr 1fr;
-      grid-template-rows: 320px;
+      grid-template-rows: 300px 260px;
       gap: 1rem;
     }
+
+    .gallery-item.tall { grid-row: span 2; }
+    .gallery-item.wide { grid-column: span 2; }
 
     .gallery-item {
       position: relative;
@@ -824,12 +827,12 @@
 
     <h1 class="hero-name">Roberto<br>León<br>Tibaduiza</h1>
 
-    <p class="hero-role">Gestión y Seguimiento de Proyectos Energéticos</p>
+    <p class="hero-role">Proyectos Energéticos · Consultoría · Servicios Públicos</p>
 
     <p class="hero-summary">
-      Más de 10 años gestionando portafolios en el sector energético e infraestructura.
-      Trayectoria en PwC y empresas del sector eléctrico colombiano.
-      Especialista en PMO, control contractual y toma de decisiones basada en datos.
+      Ingeniero con trayectoria en PwC, sector eléctrico y servicios públicos.
+      Especialista en PMO, contratos de infraestructura y medida, mercados regulados,
+      gestión de riesgos y consultoría en entornos corporativos de alto nivel.
     </p>
 
     <div class="hero-metrics">
@@ -869,9 +872,10 @@
     <span class="cred-item">PwC</span>
     <span class="cred-item">Afinia · Caribemar</span>
     <span class="cred-item">Electricaribe</span>
+    <span class="cred-item">Mercados Regulados CREG</span>
     <span class="cred-item">IEEE</span>
     <span class="cred-item">Six Sigma Green Belt</span>
-    <span class="cred-item">Universidad de la Costa</span>
+    <span class="cred-item">Servicios Públicos</span>
   </div>
 </div>
 
@@ -977,22 +981,66 @@
       <div class="section-rule"></div>
     </div>
     <div class="gallery-grid">
-      <div class="gallery-item fade-in">
-        <img src="fotos/ponente.jpg" alt="Conferencia PwC IEEE" style="object-position: center 15%;" />
+
+      <!-- Fila 1 -->
+      <div class="gallery-item tall fade-in">
+        <img src="fotos/ponente.jpg" alt="Conferencia PwC IEEE" style="object-position: 50% 10%;" />
         <div class="gallery-caption">
           <div class="gallery-caption-tag">PwC · IEEE ColCaribe</div>
           <div class="gallery-caption-text">Conferencia sobre gestión del talento y transformación digital</div>
         </div>
       </div>
       <div class="gallery-item fade-in">
-        <img src="fotos/ieee.jpg" alt="IEEE ColCaribe 2024" style="object-position: center 15%;" />
+        <img src="fotos/ieee.jpg" alt="IEEE ColCaribe 2024" style="object-position: 50% 10%;" />
         <div class="gallery-caption">
           <div class="gallery-caption-tag">IEEE ColCaribe · 2024</div>
           <div class="gallery-caption-text">Congreso de Ingeniería y Tecnologías</div>
         </div>
       </div>
       <div class="gallery-item fade-in">
-        <img src="fotos/equipo.jpg" alt="Liderazgo de equipo" style="object-position: center 30%;" />
+        <img src="fotos/reunion.jpg" alt="Entorno corporativo" style="object-position: center center;" />
+        <div class="gallery-caption">
+          <div class="gallery-caption-tag">Consultoría corporativa</div>
+          <div class="gallery-caption-text">Gestión de equipos en entorno empresarial</div>
+        </div>
+      </div>
+
+      <!-- Fila 2 -->
+      <div class="gallery-item fade-in">
+        <img src="fotos/ieee-boardroom.jpg" alt="IEEE Boardroom" style="object-position: center center;" />
+        <div class="gallery-caption">
+          <div class="gallery-caption-tag">IEEE · Directivos</div>
+          <div class="gallery-caption-text">Presentación de impacto y resultados</div>
+        </div>
+      </div>
+      <div class="gallery-item fade-in">
+        <img src="fotos/directivos.jpg" alt="Reunión directiva" style="object-position: center 20%;" />
+        <div class="gallery-caption">
+          <div class="gallery-caption-tag">Entorno ejecutivo</div>
+          <div class="gallery-caption-text">Reunión con equipo directivo</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Segunda fila de galería -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1.4fr; gap: 1rem; margin-top: 1rem;">
+      <div class="gallery-item fade-in" style="height: 240px;">
+        <img src="fotos/cuc-ieee.jpg" alt="CUC IEEE" style="object-position: center 20%;" />
+        <div class="gallery-caption">
+          <div class="gallery-caption-tag">IEEE · CUC</div>
+          <div class="gallery-caption-text">Liderazgo estudiantil — capítulo IEEE</div>
+        </div>
+      </div>
+      <div class="gallery-item fade-in" style="height: 240px;">
+        <img src="fotos/certificacion.jpg" alt="Formación y certificación" style="object-position: center 25%;" />
+        <div class="gallery-caption">
+          <div class="gallery-caption-tag">Formador</div>
+          <div class="gallery-caption-text">Programa de formación y certificación</div>
+        </div>
+      </div>
+      <div class="gallery-item fade-in" style="height: 240px;">
+        <img src="fotos/equipo.jpg" alt="Liderazgo de campo" style="object-position: center 30%;" />
         <div class="gallery-caption">
           <div class="gallery-caption-tag">Liderazgo de campo</div>
           <div class="gallery-caption-text">Coordinación de equipo técnico — más de 60 personas</div>
@@ -1090,51 +1138,57 @@
   </div>
 </div>
 
-<!-- HISTORIA -->
+<!-- PERFIL EJECUTIVO -->
 <div id="historia" class="about-section">
   <div class="about-inner">
     <div>
       <div class="section-header" style="margin-bottom: 2rem;">
         <span class="section-number">05</span>
-        <h2 class="section-title">Historia</h2>
+        <h2 class="section-title">Perfil Ejecutivo</h2>
       </div>
       <p class="about-quote">
-        Una trayectoria forjada entre <em>dos mundos</em> — y una perspectiva que no se estudia.
+        Ingeniería de campo, <em>consultoría de alto nivel</em> y mercados regulados — en un solo profesional.
       </p>
       <div class="about-body">
         <p>
-          Nació en una zona rural del Norte de Santander, en el área de influencia del Catatumbo — un entorno marcado por el conflicto armado y la escasez de recursos básicos.
-          Su formación como ingeniero en Barranquilla tomó trece años de intermitencia condicionada por factores económicos, responsabilidades familiares y problemas de salud.
+          Con más de una década de trayectoria en el sector energético y de servicios públicos, ha gestionado proyectos de infraestructura eléctrica de alta complejidad — desde la supervisión directa en campo hasta la dirección estratégica de portafolios de inversión superiores a USD 50 millones.
         </p>
         <p>
-          Esa trayectoria le permitió operar como observador en dos realidades: la base de la pirámide, donde la urgencia define cada decisión, y la esfera profesional — IEEE, PwC, el sector energético — donde desarrolló herramientas analíticas de alto nivel.
+          Su experiencia en <strong style="color: var(--light);">mercados regulados y no regulados</strong> incluye la gestión de contratos de medida, facturación y cumplimiento regulatorio con grandes clientes industriales y comerciales del sector eléctrico colombiano, con dominio de los marcos normativos de la CREG y los procesos de la cadena de valor del servicio.
         </p>
         <p>
-          Hoy aplica ese rigor no solo a proyectos técnicos, sino a la comprensión profunda de los sistemas humanos y organizacionales. Cada portafolio que gestiona lleva la perspectiva de quien entendió el valor de los recursos desde su ausencia.
+          En el ámbito de la <strong style="color: var(--light);">consultoría de alto nivel</strong>, su paso por PricewaterhouseCoopers le permitió operar en entornos corporativos de clase mundial: estructuración de PMO, alineación estratégica entre áreas técnicas, legales y financieras, y generación de información ejecutiva para la toma de decisiones en compañías del tamaño de AFINIA.
+        </p>
+        <p>
+          Combina visión operativa con pensamiento estratégico — capaz de gestionar contratos complejos, riesgos regulatorios, recursos multidisciplinarios y expectativas de stakeholders en simultáneo, tanto en el sector privado como en entidades de servicios públicos.
         </p>
       </div>
     </div>
 
     <div class="about-facts fade-in">
       <div class="about-fact">
-        <span class="about-fact-label">Origen</span>
-        <span class="about-fact-value">Norte de Santander, Colombia</span>
+        <span class="about-fact-label">Sector</span>
+        <span class="about-fact-value">Energía · Servicios Públicos · Consultoría</span>
       </div>
       <div class="about-fact">
-        <span class="about-fact-label">Base</span>
-        <span class="about-fact-value">Barranquilla, Colombia</span>
+        <span class="about-fact-label">Mercados</span>
+        <span class="about-fact-value">Regulado · No regulado · Grandes clientes</span>
       </div>
       <div class="about-fact">
-        <span class="about-fact-label">Big Four</span>
-        <span class="about-fact-value">PricewaterhouseCoopers</span>
+        <span class="about-fact-label">Consultoría</span>
+        <span class="about-fact-value">PricewaterhouseCoopers — Big Four</span>
       </div>
       <div class="about-fact">
-        <span class="about-fact-label">Red profesional</span>
-        <span class="about-fact-value">Miembro Activo IEEE</span>
+        <span class="about-fact-label">Contratos</span>
+        <span class="about-fact-value">Infraestructura · Medida · Cumplimiento CREG</span>
       </div>
       <div class="about-fact">
-        <span class="about-fact-label">Docencia</span>
-        <span class="about-fact-value">Formador · Docente Catedrático</span>
+        <span class="about-fact-label">Gestión</span>
+        <span class="about-fact-value">Riesgos · Recursos · PMO · Portafolios</span>
+      </div>
+      <div class="about-fact">
+        <span class="about-fact-label">Red</span>
+        <span class="about-fact-value">IEEE · Docente · Formador certificado</span>
       </div>
       <div class="about-fact">
         <span class="about-fact-label">Idiomas</span>

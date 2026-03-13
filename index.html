@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Roberto León Tibaduiza | Gestión de Proyectos Energéticos</title>
+  <style>
+    :root {
+      --bg: #080c12;
+      --bg2: #0d1117;
+      --bg3: #111827;
+      --accent: #3b82f6;
+      --accent2: #60a5fa;
+      --gold: #f59e0b;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --border: #1e293b;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 3rem;
+      background: rgba(8, 12, 18, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 2px;
+      color: var(--accent2);
+    }
+
+    .nav-links { display: flex; gap: 2rem; }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 6rem 3rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 4rem;
+      align-items: center;
+      width: 100%;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(59,130,246,0.1);
+      border: 1px solid rgba(59,130,246,0.25);
+      color: var(--accent2);
+      font-size: 0.75rem;
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      margin-bottom: 1.5rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .hero-tag::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    h1.name {
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      font-weight: 800;
+      line-height: 1.05;
+      margin-bottom: 0.5rem;
+      letter-spacing: -1px;
+    }
+
+    h1.name span { color: var(--accent2); }
+
+    .hero-title {
+      font-size: 1.1rem;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+      letter-spacing: 1px;
+    }
+
+    .hero-summary {
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 560px;
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 2.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .stat-item { text-align: left; }
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--accent2);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 0.25rem;
+    }
+
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.8rem 1.8rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+    }
+    .btn-primary:hover { background: #2563eb; transform: translateY(-1px); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent2); }
+
+    /* Photo card */
+    .hero-photo-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .photo-card {
+      position: relative;
+      width: 280px;
+      height: 280px;
+    }
+
+    .photo-card::before {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--gold));
+      z-index: 0;
+    }
+
+    .photo-card img {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center top;
+      border: 4px solid var(--bg);
+    }
+
+    .badge-card {
+      position: absolute;
+      bottom: 10px;
+      right: -10px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.6rem 0.9rem;
+      font-size: 0.75rem;
+      color: var(--text);
+      z-index: 2;
+      white-space: nowrap;
+    }
+
+    .badge-card strong {
+      display: block;
+      color: var(--accent2);
+      font-size: 1rem;
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      padding: 5rem 3rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-weight: 800;
+      margin-bottom: 3rem;
+      color: var(--text);
+    }
+
+    .section-title span { color: var(--accent2); }
+
+    /* ── EXPERIENCE TIMELINE ── */
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 8px; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 3rem;
+      padding-left: 2rem;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2.4rem;
+      top: 8px;
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--bg);
+      box-shadow: 0 0 0 4px rgba(59,130,246,0.2);
+    }
+
+    .timeline-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .timeline-role {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .timeline-company {
+      font-size: 0.9rem;
+      color: var(--accent2);
+      font-weight: 600;
+    }
+
+    .timeline-period {
+      margin-left: auto;
+      background: rgba(59,130,246,0.1);
+      color: var(--accent2);
+      border: 1px solid rgba(59,130,246,0.2);
+      border-radius: 999px;
+      padding: 0.2rem 0.8rem;
+      font-size: 0.75rem;
+      white-space: nowrap;
+    }
+
+    .timeline-body {
+      list-style: none;
+      padding: 0;
+    }
+
+    .timeline-body li {
+      color: var(--muted);
+      font-size: 0.9rem;
+      padding: 0.3rem 0 0.3rem 1.2rem;
+      position: relative;
+      line-height: 1.7;
+    }
+
+    .timeline-body li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+
+    .skill-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .skill-card:hover {
+      border-color: rgba(59,130,246,0.4);
+      transform: translateY(-2px);
+    }
+
+    .skill-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .skill-name { font-size: 0.9rem; font-weight: 600; color: var(--text); }
+
+    /* ── TOOLS ── */
+    .tools-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .tool-tag {
+      background: rgba(245,158,11,0.08);
+      border: 1px solid rgba(245,158,11,0.2);
+      color: var(--gold);
+      border-radius: 8px;
+      padding: 0.4rem 1rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    /* ── EDUCATION & CERTS ── */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .edu-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.75rem;
+      transition: border-color 0.2s;
+    }
+
+    .edu-card:hover { border-color: rgba(59,130,246,0.3); }
+
+    .edu-icon { font-size: 2rem; margin-bottom: 1rem; }
+
+    .edu-degree {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.25rem;
+    }
+
+    .edu-school {
+      font-size: 0.85rem;
+      color: var(--accent2);
+      margin-bottom: 0.25rem;
+    }
+
+    .edu-period {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .edu-badge {
+      display: inline-block;
+      background: rgba(245,158,11,0.1);
+      border: 1px solid rgba(245,158,11,0.3);
+      color: var(--gold);
+      border-radius: 999px;
+      padding: 0.2rem 0.75rem;
+      font-size: 0.75rem;
+    }
+
+    .cert-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      transition: border-color 0.2s;
+    }
+
+    .cert-card:hover { border-color: rgba(245,158,11,0.3); }
+
+    .cert-icon { font-size: 1.5rem; flex-shrink: 0; }
+    .cert-name { font-size: 0.95rem; font-weight: 600; color: var(--text); }
+    .cert-year { font-size: 0.8rem; color: var(--muted); }
+
+    /* ── ABOUT / HISTORIA ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .about-text p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.9;
+      margin-bottom: 1.25rem;
+    }
+
+    .about-text p:first-child::first-letter {
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--accent2);
+      float: left;
+      line-height: 1;
+      margin-right: 0.4rem;
+    }
+
+    .about-highlights {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .highlight-item {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 12px 12px 0;
+      padding: 1rem 1.25rem;
+    }
+
+    .highlight-item strong {
+      display: block;
+      color: var(--accent2);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.25rem;
+    }
+
+    .highlight-item span {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    /* ── CONTACT ── */
+    .contact-section {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 5rem 3rem;
+    }
+
+    .contact-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      text-decoration: none;
+      transition: border-color 0.2s;
+    }
+
+    .contact-item:hover { border-color: var(--accent); }
+
+    .contact-item-icon { font-size: 1.25rem; }
+    .contact-item-label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+    .contact-item-value { font-size: 0.95rem; color: var(--text); font-weight: 500; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.8rem;
+      color: #334155;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── DIVIDER ── */
+    .full-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .hero { padding: 5rem 1.5rem 3rem; }
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-photo-wrap { order: -1; }
+      .photo-card { width: 180px; height: 180px; }
+      section { padding: 3rem 1.5rem; }
+      .about-grid { grid-template-columns: 1fr; }
+      .contact-inner { grid-template-columns: 1fr; }
+      .hero-stats { gap: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">R·L·T</div>
+  <div class="nav-links">
+    <a href="#experiencia">Experiencia</a>
+    <a href="#habilidades">Habilidades</a>
+    <a href="#educacion">Educación</a>
+    <a href="#historia">Historia</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="max-width:100%; padding-top: 6rem;">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-tag">Disponible · Sector Energético</div>
+      <h1 class="name">Roberto<br><span>León</span> Tibaduiza</h1>
+      <div class="hero-title">Gestión y Seguimiento de Proyectos Energéticos</div>
+      <p class="hero-summary">
+        Ingeniero Electrónico con más de 10 años de experiencia en gestión operativa de proyectos
+        en el sector energético e infraestructura. Trayectoria en firma Big Four (PwC) y empresas
+        del sector eléctrico, liderando portafolios de inversión superiores a USD 50 millones.
+      </p>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-number">10+</div>
+          <div class="stat-label">Años de exp.</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">$50M</div>
+          <div class="stat-label">USD gestionados</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">2</div>
+          <div class="stat-label">PMOs diseñadas</div>
+        </div>
+      </div>
+      <div class="hero-actions">
+        <a href="#contacto" class="btn btn-primary">Contactar →</a>
+        <a href="#experiencia" class="btn btn-outline">Ver experiencia</a>
+      </div>
+    </div>
+
+    <div class="hero-photo-wrap">
+      <div class="photo-card">
+        <img src="fotos/perfil.jpg" alt="Roberto León Tibaduiza" />
+        <div class="badge-card">
+          <strong>PwC</strong>
+          Consultor Senior
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="full-divider" />
+
+<!-- EXPERIENCIA -->
+<section id="experiencia" style="max-width:1100px; margin: 0 auto; padding: 5rem 3rem;">
+  <div class="section-label">Trayectoria</div>
+  <h2 class="section-title">Experiencia <span>Profesional</span></h2>
+
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-header">
+        <div>
+          <div class="timeline-role">Profesional de Gestión de Proyectos (PMO)</div>
+          <div class="timeline-company">Tempocolba — En misión para Caribemar / Afinia</div>
+        </div>
+        <span class="timeline-period">2025 · Actual</span>
+      </div>
+      <ul class="timeline-body">
+        <li>Seguimiento operativo de portafolios y programas, asegurando cumplimiento de compromisos, cronogramas y entregables.</li>
+        <li>Control y consolidación de información técnica y regulatoria para toma de decisiones estratégicas.</li>
+        <li>Coordinación del flujo de información entre equipos técnicos y áreas de soporte.</li>
+        <li>Generación de reportes ejecutivos con enfoque en riesgos, desviaciones y próximos hitos.</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-header">
+        <div>
+          <div class="timeline-role">Consultor Senior</div>
+          <div class="timeline-company">PwC — PricewaterhouseCoopers</div>
+        </div>
+        <span class="timeline-period">2022 – 2024</span>
+      </div>
+      <ul class="timeline-body">
+        <li>Estructuración, puesta en operación y seguimiento de la Oficina de Proyectos (PMO) para AFINIA.</li>
+        <li>Seguimiento sistemático a hitos críticos, identificando desviaciones y generando alertas tempranas para la alta dirección.</li>
+        <li>Control documental integral: integridad, actualización y disponibilidad de información técnica y de gestión.</li>
+        <li>Coordinación permanente con equipos técnicos, legales, financieros y de control.</li>
+        <li>Preparación de paquetes de transición entre etapas, con claridad sobre responsabilidades y entregables.</li>
+        <li>Elaboración de reportes ejecutivos para decisiones de priorización del portafolio.</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-header">
+        <div>
+          <div class="timeline-role">Ingeniero Residente</div>
+          <div class="timeline-company">Servicios Integrales del Atlántico SIA</div>
+        </div>
+        <span class="timeline-period">2021 – 2022</span>
+      </div>
+      <ul class="timeline-body">
+        <li>Coordinación de proyectos de mantenimiento eléctrico en redes de media y baja tensión.</li>
+        <li>Supervisión de actividades en campo y gestión de contratistas en el sur del Atlántico.</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-header">
+        <div>
+          <div class="timeline-role">Ingeniero de Proyectos y Procesos</div>
+          <div class="timeline-company">Electricaribe</div>
+        </div>
+        <span class="timeline-period">2016 – 2021</span>
+      </div>
+      <ul class="timeline-body">
+        <li>Liderazgo en planificación y ejecución de proyectos de infraestructura eléctrica con control operativo integral.</li>
+        <li>Implementación de herramientas de seguimiento y tableros de control para trazabilidad de actividades e indicadores.</li>
+        <li>Coordinación de equipos técnicos y contratistas en proyectos de redes y subestaciones.</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-header">
+        <div>
+          <div class="timeline-role">Ingeniero Practicante</div>
+          <div class="timeline-company">Electricaribe</div>
+        </div>
+        <span class="timeline-period">2015 – 2016</span>
+      </div>
+      <ul class="timeline-body">
+        <li>Planificación y seguimiento de mantenimiento preventivo y correctivo en redes eléctricas.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<hr class="full-divider" />
+
+<!-- GALERÍA -->
+<section style="max-width:1100px; margin: 0 auto; padding: 5rem 3rem;">
+  <div class="section-label">En acción</div>
+  <h2 class="section-title">Momentos <span>Profesionales</span></h2>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.25rem;">
+
+    <div style="grid-column: span 1; border-radius: 16px; overflow: hidden; border: 1px solid var(--border); position: relative; aspect-ratio: 3/4;">
+      <img src="fotos/ponente.jpg" alt="Ponente PwC IEEE" style="width:100%; height:100%; object-fit:cover; object-position: center top; display:block;" />
+      <div style="position:absolute; bottom:0; left:0; right:0; background: linear-gradient(transparent, rgba(0,0,0,0.85)); padding: 1.25rem 1rem 0.9rem;">
+        <div style="font-size:0.7rem; color:var(--accent2); text-transform:uppercase; letter-spacing:1px;">PwC · IEEE ColCaribe</div>
+        <div style="font-size:0.9rem; font-weight:600; color:#fff;">Conferencia sobre gestión del talento</div>
+      </div>
+    </div>
+
+    <div style="grid-column: span 2; display: flex; flex-direction: column; gap: 1.25rem;">
+
+      <div style="border-radius: 16px; overflow: hidden; border: 1px solid var(--border); position: relative; flex: 1;">
+        <img src="fotos/equipo.jpg" alt="Liderazgo de equipo" style="width:100%; height:100%; object-fit:cover; object-position: center 30%; display:block;" />
+        <div style="position:absolute; bottom:0; left:0; right:0; background: linear-gradient(transparent, rgba(0,0,0,0.85)); padding: 1.25rem 1rem 0.9rem;">
+          <div style="font-size:0.7rem; color:var(--gold); text-transform:uppercase; letter-spacing:1px;">Liderazgo de campo</div>
+          <div style="font-size:0.9rem; font-weight:600; color:#fff;">Coordinación de equipo técnico +60 personas</div>
+        </div>
+      </div>
+
+      <div style="border-radius: 16px; overflow: hidden; border: 1px solid var(--border); position: relative; flex: 1;">
+        <img src="fotos/ieee.jpg" alt="IEEE ColCaribe 2024" style="width:100%; height:100%; object-fit:cover; object-position: center 20%; display:block;" />
+        <div style="position:absolute; bottom:0; left:0; right:0; background: linear-gradient(transparent, rgba(0,0,0,0.85)); padding: 1.25rem 1rem 0.9rem;">
+          <div style="font-size:0.7rem; color:var(--accent2); text-transform:uppercase; letter-spacing:1px;">IEEE ColCaribe · 2024</div>
+          <div style="font-size:0.9rem; font-weight:600; color:#fff;">Congreso de Ingeniería y Tecnologías</div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<hr class="full-divider" />
+
+<!-- HABILIDADES -->
+<section id="habilidades" style="max-width:1100px; margin: 0 auto; padding: 5rem 3rem;">
+  <div class="section-label">Competencias</div>
+  <h2 class="section-title">Habilidades <span>Clave</span></h2>
+
+  <div class="skills-grid" style="margin-bottom: 3rem;">
+    <div class="skill-card">
+      <div class="skill-icon">📋</div>
+      <div class="skill-name">Seguimiento y control de compromisos contractuales</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🗂️</div>
+      <div class="skill-name">Trazabilidad de hitos, entregables y plazos críticos</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">📁</div>
+      <div class="skill-name">Control documental y matrices de cumplimiento</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">⚡</div>
+      <div class="skill-name">Gestión de portafolios de proyectos energéticos</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">📊</div>
+      <div class="skill-name">Reportes ejecutivos para toma de decisiones</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">⚠️</div>
+      <div class="skill-name">Gestión de riesgos operativos y contractuales</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🤝</div>
+      <div class="skill-name">Coordinación con áreas técnicas, legales y financieras</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">👥</div>
+      <div class="skill-name">Gestión de stakeholders y proveedores</div>
+    </div>
+  </div>
+
+  <div class="section-label" style="margin-bottom:1rem;">Herramientas</div>
+  <div class="tools-list">
+    <span class="tool-tag">Excel Avanzado</span>
+    <span class="tool-tag">Power BI</span>
+    <span class="tool-tag">PowerPoint</span>
+    <span class="tool-tag">MS Project</span>
+    <span class="tool-tag">Six Sigma</span>
+    <span class="tool-tag">PMO Design</span>
+    <span class="tool-tag">Inglés Intermedio</span>
+    <span class="tool-tag">IEEE</span>
+  </div>
+</section>
+
+<hr class="full-divider" />
+
+<!-- EDUCACIÓN & CERTS -->
+<section id="educacion" style="max-width:1100px; margin: 0 auto; padding: 5rem 3rem;">
+  <div class="section-label">Formación</div>
+  <h2 class="section-title">Educación y <span>Certificaciones</span></h2>
+
+  <div class="cards-grid" style="margin-bottom: 3rem;">
+    <div class="edu-card">
+      <div class="edu-icon">🎓</div>
+      <div class="edu-degree">Ingeniero Electrónico</div>
+      <div class="edu-school">Universidad de la Costa — CUC</div>
+      <div class="edu-period">2010 – 2015</div>
+      <span class="edu-badge">Beca a la Excelencia Académica BEA</span>
+    </div>
+    <div class="edu-card">
+      <div class="edu-icon">📚</div>
+      <div class="edu-degree">Especialista en Gerencia de Proyectos</div>
+      <div class="edu-school">Universidad de la Costa — CUC</div>
+      <div class="edu-period">2022 – 2023</div>
+      <span class="edu-badge">Exaltación Honorífica</span>
+    </div>
+  </div>
+
+  <div class="section-label" style="margin-bottom:1rem;">Certificaciones</div>
+  <div class="cards-grid">
+    <div class="cert-card">
+      <div class="cert-icon">🟢</div>
+      <div>
+        <div class="cert-name">Six Sigma Green Belt</div>
+        <div class="cert-year">2023</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">📌</div>
+      <div>
+        <div class="cert-name">Google Project Management</div>
+        <div class="cert-year">2022</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">📈</div>
+      <div>
+        <div class="cert-name">Diplomado en Inteligencia de Negocios</div>
+        <div class="cert-year">2020</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="full-divider" />
+
+<!-- HISTORIA -->
+<section id="historia" style="max-width:1100px; margin: 0 auto; padding: 5rem 3rem; background: var(--bg2);">
+  <div class="section-label">Sobre mí</div>
+  <h2 class="section-title">Una trayectoria <span>real</span></h2>
+
+  <div class="about-grid">
+    <div class="about-text">
+      <p>
+        Nací en una zona rural del Norte de Santander, cerca al área de influencia del Catatumbo —
+        un entorno marcado históricamente por el conflicto armado y la escasez de recursos básicos.
+        Mi formación como ingeniero en Barranquilla no fue un proceso estándar: tomó trece años
+        de intermitencia condicionados por factores económicos, responsabilidades familiares y
+        problemas de salud.
+      </p>
+      <p>
+        Esa trayectoria me permitió operar como observador en dos mundos: la base de la pirámide,
+        donde la urgencia física define cada decisión, y la esfera profesional — IEEE, PwC, empresas
+        del sector energético — donde observé el vacío existencial de quienes tienen sus necesidades
+        cubiertas pero carecen de herramientas para gestionar su propósito.
+      </p>
+      <p>
+        Hoy aplico el rigor analítico de la ingeniería no solo a proyectos técnicos, sino a la
+        comprensión de los sistemas humanos y organizacionales. Cada proyecto que gestiono
+        lleva la perspectiva de quien entendió el valor de los recursos desde su ausencia.
+      </p>
+    </div>
+
+    <div class="about-highlights">
+      <div class="highlight-item">
+        <strong>Origen</strong>
+        <span>Norte de Santander, Colombia · Zona rural</span>
+      </div>
+      <div class="highlight-item">
+        <strong>Perfil diferencial</strong>
+        <span>Ingeniero con visión de dos realidades socioeconómicas</span>
+      </div>
+      <div class="highlight-item">
+        <strong>Big Four</strong>
+        <span>Experiencia en PwC — firma de consultoría global</span>
+      </div>
+      <div class="highlight-item">
+        <strong>Miembro IEEE</strong>
+        <span>Instituto de Ingenieros Eléctricos y Electrónicos</span>
+      </div>
+      <div class="highlight-item">
+        <strong>Docente y formador</strong>
+        <span>Docente catedrático · Formador en Gestión de Proyectos</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="full-divider" />
+
+<!-- CONTACTO -->
+<div class="contact-section" id="contacto">
+  <div class="contact-inner">
+    <div>
+      <div class="section-label">Contacto</div>
+      <h2 class="section-title" style="margin-bottom: 1rem;">¿Hablamos?</h2>
+      <p style="color: var(--muted); font-size: 0.95rem; max-width: 400px; line-height: 1.8;">
+        Disponible para proyectos en el sector energético, consultoría de PMO
+        y formación en gestión de proyectos.
+      </p>
+    </div>
+    <div class="contact-links">
+      <a href="tel:3107814087" class="contact-item">
+        <span class="contact-item-icon">📞</span>
+        <div>
+          <div class="contact-item-label">Teléfono</div>
+          <div class="contact-item-value">310-7814087</div>
+        </div>
+      </a>
+      <a href="mailto:Tibaduiza1@gmail.com" class="contact-item">
+        <span class="contact-item-icon">✉️</span>
+        <div>
+          <div class="contact-item-label">Email</div>
+          <div class="contact-item-value">Tibaduiza1@gmail.com</div>
+        </div>
+      </a>
+      <a href="mailto:Tibaduiza1@ieee.org" class="contact-item">
+        <span class="contact-item-icon">🔬</span>
+        <div>
+          <div class="contact-item-label">IEEE</div>
+          <div class="contact-item-value">Tibaduiza1@ieee.org</div>
+        </div>
+      </a>
+      <a href="https://www.linkedin.com/in/tibaduiza1" target="_blank" class="contact-item">
+        <span class="contact-item-icon">💼</span>
+        <div>
+          <div class="contact-item-label">LinkedIn</div>
+          <div class="contact-item-value">Ver perfil →</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  Roberto Antonio León Tibaduiza &mdash; Ingeniero Electrónico · Especialista en Gerencia de Proyectos &mdash; 2026
+</footer>
+
+</body>
+</html>

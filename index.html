@@ -231,12 +231,12 @@
       overflow: hidden;
       background: var(--dark);
       border-left: 1px solid var(--border);
+      min-height: 480px;
     }
 
     .hero-photo-frame {
-      width: 100%;
-      height: 100%;
-      position: relative;
+      position: absolute;
+      inset: 0;
     }
 
     .hero-photo-frame img {
@@ -245,18 +245,18 @@
       object-fit: cover;
       object-position: 52% 8%;
       display: block;
-      filter: grayscale(12%) contrast(1.04) brightness(0.92);
+      filter: grayscale(12%) contrast(1.04) brightness(0.9);
     }
 
-    /* Blend left edge into hero background */
+    /* Blend edges into hero background */
     .hero-photo-frame::before {
       content: '';
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(to right,  var(--black) 0%, transparent 22%),
-        linear-gradient(to top,    var(--black) 0%, transparent 28%),
-        linear-gradient(to bottom, var(--dark)  0%, transparent 12%);
+        linear-gradient(to right,  var(--black) 0%, transparent 25%),
+        linear-gradient(to top,    var(--black) 0%, transparent 30%),
+        linear-gradient(to bottom, var(--dark)  0%, transparent 10%);
       z-index: 1;
       pointer-events: none;
     }
@@ -900,11 +900,11 @@
       <div class="exp-content">
         <div class="exp-role">Coordinador de Proyectos</div>
         <ul class="exp-bullets">
-          <li>Gestión técnica y administrativa del programa de garantía de la medida en fronteras de generación y fronteras comerciales para Enel Colombia.</li>
-          <li>Aplicación del Código de Medida y normativa CREG en la verificación, instalación y mantenimiento de sistemas de medida de energía.</li>
-          <li>Coordinación con el CGM (Gestor de Medidas Comerciales) para asegurar la integridad y trazabilidad de las medidas reportadas al mercado eléctrico.</li>
-          <li>Control documental, gestión de no conformidades y seguimiento a planes de acción ante hallazgos técnicos y regulatorios.</li>
-          <li>Interlocución permanente con operadores de red, agentes del mercado y equipos técnicos en campo.</li>
+          <li>Gestión técnica y administrativa para garantizar la medida de energía en fronteras de generación y fronteras comerciales del mercado no regulado de Enel Colombia.</li>
+          <li>Aplicación del Código de Medida (CREG) en los procesos de verificación, calibración y mantenimiento de equipos de medida en frontera.</li>
+          <li>Coordinación con el CGM para asegurar la correcta transmisión, integridad y trazabilidad de las medidas reportadas al mercado eléctrico mayorista.</li>
+          <li>Gestión de contratos con grandes usuarios del mercado no regulado: seguimiento de compromisos, control documental y atención de no conformidades.</li>
+          <li>Interlocución técnica con operadores de red, agentes del mercado y equipos de campo para el cumplimiento de obligaciones regulatorias.</li>
         </ul>
       </div>
     </div>

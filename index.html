@@ -265,11 +265,11 @@
     .cred-bar {
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
-      padding: 1.25rem 3rem;
+      padding: 1.1rem 0;
       display: flex;
       align-items: center;
-      gap: 0;
       overflow: hidden;
+      gap: 0;
     }
 
     .cred-label {
@@ -278,27 +278,55 @@
       text-transform: uppercase;
       color: var(--muted);
       white-space: nowrap;
-      margin-right: 2.5rem;
+      padding: 0 2rem;
       flex-shrink: 0;
+      border-right: 1px solid var(--border);
     }
 
-    .cred-items {
+    .cred-track-wrap {
+      flex: 1;
+      overflow: hidden;
+      position: relative;
+      mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+    }
+
+    .cred-track {
       display: flex;
       align-items: center;
-      gap: 0;
-      flex-wrap: nowrap;
-      overflow: hidden;
+      width: max-content;
+      animation: ticker 28s linear infinite;
+    }
+
+    .cred-track:hover { animation-play-state: paused; }
+
+    @keyframes ticker {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
     }
 
     .cred-item {
       font-size: 0.72rem;
       font-weight: 600;
-      letter-spacing: 1.5px;
+      letter-spacing: 2px;
       text-transform: uppercase;
       color: var(--light);
-      padding: 0 1.25rem;
-      border-left: 1px solid var(--border);
+      padding: 0 1.75rem;
       white-space: nowrap;
+      position: relative;
+    }
+
+    .cred-item::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: var(--gold);
+      opacity: 0.5;
     }
 
     /* ─── SECTION WRAPPER ─── */
@@ -854,15 +882,31 @@
 <!-- CREDIBILITY BAR -->
 <div class="cred-bar">
   <span class="cred-label">Trayectoria en</span>
-  <div class="cred-items">
-    <span class="cred-item">PwC</span>
-    <span class="cred-item">Enel Colombia</span>
-    <span class="cred-item">Bureau Veritas</span>
-    <span class="cred-item">Afinia</span>
-    <span class="cred-item">Electricaribe</span>
-    <span class="cred-item">CENS</span>
-    <span class="cred-item">IEEE</span>
-    <span class="cred-item">Six Sigma</span>
+  <div class="cred-track-wrap">
+    <div class="cred-track">
+      <!-- Primera pasada -->
+      <span class="cred-item">PwC</span>
+      <span class="cred-item">Enel Colombia</span>
+      <span class="cred-item">Bureau Veritas</span>
+      <span class="cred-item">Afinia</span>
+      <span class="cred-item">AIR-E</span>
+      <span class="cred-item">Electricaribe</span>
+      <span class="cred-item">CENS</span>
+      <span class="cred-item">Grupo EPM</span>
+      <span class="cred-item">IEEE</span>
+      <span class="cred-item">Six Sigma</span>
+      <!-- Segunda pasada (duplicado para loop continuo) -->
+      <span class="cred-item">PwC</span>
+      <span class="cred-item">Enel Colombia</span>
+      <span class="cred-item">Bureau Veritas</span>
+      <span class="cred-item">Afinia</span>
+      <span class="cred-item">AIR-E</span>
+      <span class="cred-item">Electricaribe</span>
+      <span class="cred-item">CENS</span>
+      <span class="cred-item">Grupo EPM</span>
+      <span class="cred-item">IEEE</span>
+      <span class="cred-item">Six Sigma</span>
+    </div>
   </div>
 </div>
 

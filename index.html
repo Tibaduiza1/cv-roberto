@@ -227,89 +227,38 @@
 
     /* Hero photo panel */
     .hero-right {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 3rem 2.5rem;
-      border-left: 1px solid var(--border);
       position: relative;
+      overflow: hidden;
       background: var(--dark);
-    }
-
-    .hero-photo-wrap {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      border-left: 1px solid var(--border);
     }
 
     .hero-photo-frame {
-      width: 280px;
-      height: 340px;
-      border-radius: 10px;
-      overflow: hidden;
-      border: 1px solid var(--border2);
+      width: 100%;
+      height: 100%;
       position: relative;
-      box-shadow: 0 24px 60px rgba(0,0,0,0.6);
     }
 
     .hero-photo-frame img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: 52% 12%;
+      object-position: 52% 8%;
       display: block;
-      filter: grayscale(10%) contrast(1.05);
-      transition: transform 0.6s ease;
+      filter: grayscale(12%) contrast(1.04) brightness(0.92);
     }
 
-    .hero-photo-frame:hover img {
-      transform: scale(1.03);
-    }
-
-    /* Subtle dark gradient at bottom to blend into card */
-    .hero-photo-frame::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 35%;
-      background: linear-gradient(transparent, rgba(8,8,8,0.55));
-      pointer-events: none;
-    }
-
-    /* Decorative accent line */
+    /* Blend left edge into hero background */
     .hero-photo-frame::before {
       content: '';
       position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: var(--gold);
-      z-index: 2;
-    }
-
-    .hero-photo-badge {
-      margin-top: 1.25rem;
-      width: 280px;
-      border: 1px solid var(--gold-border);
-      background: var(--card);
-      border-radius: 6px;
-      padding: 0.75rem 1.1rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .hero-photo-badge .badge-role {
-      font-size: 0.68rem;
-      color: var(--gold);
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-    }
-
-    .hero-photo-badge .badge-company {
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--light);
+      inset: 0;
+      background:
+        linear-gradient(to right,  var(--black) 0%, transparent 22%),
+        linear-gradient(to top,    var(--black) 0%, transparent 28%),
+        linear-gradient(to bottom, var(--dark)  0%, transparent 12%);
+      z-index: 1;
+      pointer-events: none;
     }
 
     /* ─── CREDIBILITY BAR ─── */
@@ -895,14 +844,8 @@
   </div>
 
   <div class="hero-right">
-    <div class="hero-photo-wrap">
-      <div class="hero-photo-frame">
-        <img src="fotos/perfil.jpg" alt="Roberto León Tibaduiza" />
-      </div>
-      <div class="hero-photo-badge">
-        <div class="badge-role">Consultor Senior</div>
-        <div class="badge-company">PricewaterhouseCoopers</div>
-      </div>
+    <div class="hero-photo-frame">
+      <img src="fotos/perfil.jpg" alt="Roberto León Tibaduiza" />
     </div>
   </div>
 </section>
@@ -936,14 +879,32 @@
       <div class="exp-meta">
         <div class="exp-period">Feb 2026 · Actual</div>
         <div class="exp-company">Hesego Ingeniería</div>
-        <div class="exp-location">Coordinación de Proyectos</div>
+        <div class="exp-location">Cliente: CENS</div>
       </div>
       <div class="exp-content">
         <div class="exp-role">Coordinador de Proyectos</div>
         <ul class="exp-bullets">
-          <li>Coordinación integral de proyectos de ingeniería, asegurando el cumplimiento de alcance, cronograma y entregables contractuales.</li>
+          <li>Coordinación integral de proyectos de ingeniería para CENS, asegurando el cumplimiento de alcance, cronograma y entregables contractuales.</li>
           <li>Gestión de recursos técnicos y logísticos, con seguimiento permanente al avance de actividades en campo.</li>
-          <li>Interlocución con clientes y partes interesadas para garantizar la trazabilidad de compromisos y el control de riesgos.</li>
+          <li>Interlocución con el cliente y partes interesadas para garantizar la trazabilidad de compromisos y el control de riesgos operativos.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item fade-in">
+      <div class="exp-meta">
+        <div class="exp-period">2024 – 2025</div>
+        <div class="exp-company">Bureau Veritas</div>
+        <div class="exp-location">Cliente: Enel Colombia</div>
+      </div>
+      <div class="exp-content">
+        <div class="exp-role">Coordinador de Proyectos</div>
+        <ul class="exp-bullets">
+          <li>Gestión técnica y administrativa del programa de garantía de la medida en fronteras de generación y fronteras comerciales para Enel Colombia.</li>
+          <li>Aplicación del Código de Medida y normativa CREG en la verificación, instalación y mantenimiento de sistemas de medida de energía.</li>
+          <li>Coordinación con el CGM (Gestor de Medidas Comerciales) para asegurar la integridad y trazabilidad de las medidas reportadas al mercado eléctrico.</li>
+          <li>Control documental, gestión de no conformidades y seguimiento a planes de acción ante hallazgos técnicos y regulatorios.</li>
+          <li>Interlocución permanente con operadores de red, agentes del mercado y equipos técnicos en campo.</li>
         </ul>
       </div>
     </div>
